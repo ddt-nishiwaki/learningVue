@@ -9,9 +9,39 @@
 <body>
     <div id="event">
         <!-- 自身のプロパティを更新するメソッドをクリックイベントから呼び出します -->
-        <button v-on:click="insertDate">日付を表示</button>
+        <!--
+            テンプレート側からeventオブジェクトの他に任意のデータを渡すこともできますが,明示的に引数を設定する必要があります
+            この場合、イベントオブジェクトは $event として設定すると渡せるようになっています
+        -->
+        <!-- <button v-on:click="insertDate">日付を表示</button> -->
+        <button v-on:click="insertDate('任意のデータ',$event)">日付を表示</button>
         <!-- プロパティが更新されると、余計なDOM操作なしにブラウザ上の表示も変更されることを確認できます -->
         <p>{{ message }}</p>
+        <!--
+            イベントの細かな制御を確認します
+            イベントの制御には v-on:イベント名.イベント装飾子 と設定してコントロールします。
+        -->
+        <ul id="eventNest">
+            <!-- 一度だけ発火させたい場合は once を設定します -->
+            <li v-on:click.once="clickHandler('first')">
+                first click me! once (初回のみイベントを捕捉します)
+                <ul>
+                    <li v-on:click="clickHandler('second')">second click me!
+                        <ul>
+                            <li v-on:click.self="clickHandler('third')">third click me!(自分自身がクリックされないと発火しませんが、伝播はします)
+                                <ul>
+                                    <li v-on:click="clickHandler('fource')">fource click me!
+                                        <br /><a v-on:click="clickHandler('aタグ')" href="#refreshedfirst">aタグによる遷移は実行されます</a>
+                                        <br /><a v-on:click.prevent="clickHandler('aタグ')" href="#refreshedsecond">aタグによる遷移は実行されません</a>
+                                        <br /><a v-on:click.prevent.stop="clickHandler('aタグ')" href="#refreshedthird">aタグによる遷移は実行されず、伝播もしません</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </ul>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     <script src="./event.js"></script>
