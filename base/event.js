@@ -7,6 +7,7 @@ let event = new Vue({
     el: '#event',
     data: {
         message: '日付を表示してください',
+        placeholder: 'エンターを押してください',
     },
     methods: {
         /*
@@ -22,8 +23,19 @@ let event = new Vue({
             console.log(eventObject); // 引数を設定するとeventオブジェクトが渡されるので利用できます
             this.message = new Date().toLocaleString() // 自身のプロパティを書き換えると紐づくDOMも再描画されます
         },
+        /**
+         * イベント発生位置を確認するためのメソッドを設定します。
+         * これによりイベントのpreventDefaultやstopPropagationの動作を確認します。
+         */
         clickHandler: function(message) {
             alert(`${message} でクリックイベントを捕捉しました`)
+        },
+        /**
+         * キーボード入力に対するハンドラを設定します
+         * 細かな指定はディレクティブで行っています
+         */
+        enterKey: function() {
+            alert('キー入力を受け付けました');
         }
     }
 });
