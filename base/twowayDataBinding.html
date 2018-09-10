@@ -25,8 +25,22 @@
                 値はモデルデータに紐づいたものが反映されます
             -->
             <input type="text" id="name" v-model="myName" value="この値は無視されます" />
+            <!--
+                ラジオボタンに設定する際はコツがいります。
+                この場合は全てのラジオボタンに同じv-modelを渡します
+                NOTE:
+                異なるv-modelも設定できますが、ラジオボタンの挙動としては不正なものになるでしょう
+            -->
+            <br />
+            <label for="man">男性</label>
+            <input type="radio" id="man" value="男性" v-model="gender" /><br />
+            <label for="woman">女性</label>
+            <input type="radio" id="wman" value="女性" v-model="gender" /><br />
+            <label for="other">その他</label>
+            <input type="radio" id="other" value="その他" v-model="gender" /><br />
         </form>
         <div>こんにちは、{{ myName }}さん！</div>
+        <div>性別: {{ gender }}</div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     <script src="./twowayDataBinding.js"></script>
