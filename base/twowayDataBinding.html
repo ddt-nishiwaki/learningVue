@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>速習Vue.js</title>
+</head>
+<body>
+    <!--
+        これまで、データモデルからテンプレートへの反映を行ってきましたが
+        テンプレート側の変更からモデルを更新することも可能です。
+        双方向データバインディングという仕組みでangularの実装が有名ですが、
+        Vueでも実現できます。
+    --->
+    <div id="twowayDataBinding">
+        <form>
+            <label for="name">氏名: </label>
+            <!--
+                設定は簡単で、双方向データバインディングを実現したいプロパティを
+                v-model ディレクティブを使って指定するだけです。
+                テンプレート側から変更を加えるにはテキスト入力フォームがわかりやすいでしょう
+                NOTE:
+                本来のhtmlのvalue属性の扱いがきになるところですが、この場合は無視されます
+                値はモデルデータに紐づいたものが反映されます
+            -->
+            <input type="text" id="name" v-model="myName" value="この値は無視されます" />
+        </form>
+        <div>こんにちは、{{ myName }}さん！</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="./twowayDataBinding.js"></script>
+</body>
+</html>
