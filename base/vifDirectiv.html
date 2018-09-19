@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>速習Vue.js</title>
+</head>
+<body>
+    <div id="app">
+        <form>
+            <label for="spring">春</label>
+            <input type="radio" id="spring" v-model="season" value="spring" />
+            <label for="summer">夏</label>
+            <input type="radio" id="summer" v-model="season" value="summer" />
+            <label for="autumn">秋</label>
+            <input type="radio" id="autumn" v-model="season" value="autumn" />
+            <label for="winter">冬</label>
+            <input type="radio" id="winter" v-model="season" value="winter" />
+        </form>
+        <div>式の値に応じて表示/非表示を制御します。例えば選択した値によってコンテンツを出し分けたりします</div>
+        <!--
+            v-ifディレクティブに指定したJavascript式がtrueならDOMを挿入
+            falseならDOMを削除します
+            v-else-if, v-elseを使ったタグは v-ifを使ったタグのすぐ後に配置する必要があります
+        -->
+        <div id="panel" v-if="'spring' === season">
+            春のコンテンツ
+        </div>
+        <div id="panel" v-else-if="'summer' === season">
+            夏のコンテンツ
+        </div>
+        <div id="panel" v-if="'autumn' === season">
+            秋のコンテンツ
+        </div>
+        <div id="panel" v-if="'winter' === season">
+            冬のコンテンツ
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="./vifDirectiv.js"></script>
+</body>
+</html>
