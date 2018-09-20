@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>速習Vue.js</title>
+</head>
+<body>
+
+    <div id="app">
+        <form>
+            <!--
+                v-modelに unit を指定することで
+                選択されたラジオボタンに設定されているオブジェクトが
+                Vueインスタンスで定義されている unit に設定されることを想定しています
+            -->
+            <label for="kb">1KB : </label>
+            <input type="radio" id="kb" v-model="unit" :value="{ name: 'キロバイト', size: 1024 }" /><br>
+            <label for="mb">1MB : </label>
+            <input type="radio" id="mb" v-model="unit" :value="{ name: 'メガバイト', size: 1048576 }" /><br>
+            <label for="gb">1GB : </label>
+            <input type="radio" id="gb" v-model="unit" :value="{ name: 'ギガバイト', size: 1073742000 }" /><br>
+        </form>
+        <br>
+        <div>{{ detail }}</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="./bindObject.js"></script>
+</body>
+</html>

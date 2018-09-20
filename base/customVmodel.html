@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>速習Vue.js</title>
+</head>
+<body>
+    <div id="app">
+        <form>
+            <label for="name">メールアドレス : </label>
+            <!--
+                v-model は 内部的に v-bindと v-on:input を行なっています
+                それがわかっていれば、下記のように記述して
+                間に処理を挟んだ双方向バインディングを設定することができます
+            -->
+            <textarea
+                :value="emails.join(';')"
+                @input="emails=$event.target.value.split(';')"
+            ></textarea>
+            ※ 複数設定する場合、 ; で区切ってください
+        </form>
+        <ul>
+            <li v-for="email in emails">
+                {{ email }}
+            </li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="./customVmodel.js"></script>
+</body>
+</html>
