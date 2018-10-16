@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>速習Vue.js</title>
+</head>
+<body>
+    <!--
+      グローバルスコープには global-component を定義しているので
+      #app, #another-app どちらのスコープ内からでも使用可能です
+    -->
+    <div id="app">
+      <h1>app</h1>
+      <global-component></global-component>
+      <local-component></local-component>
+    </div>
+    <!--
+      一方 local-component は #app にのみ登録しているので
+      #another-app 内で利用しようとするとエラーになります
+    -->
+    <div id="another-app">
+      <h1>another-app</h1>
+      <global-component></global-component>
+      <local-component></local-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="./component_definition.js"></script>
+</body>
+</html>
